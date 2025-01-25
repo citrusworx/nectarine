@@ -1,0 +1,6 @@
+js/node_modules
+API/node_modules
+node_modules
+yarn.lock
+.env
+

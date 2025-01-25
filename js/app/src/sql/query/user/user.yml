@@ -1,0 +1,37 @@
+user:
+  getUserByAge:
+    type: SELECT
+    table: users
+    fields:
+      id,
+      name
+    conditions:
+      condition: 'WHERE'
+      column: age
+      operator: '>'
+      value: $1
+  getAllUsers:
+    type: SELECT
+    table: users
+    fields: '*'
+  getUserById:
+    type: SELECT
+    table: users
+    fields:
+      id
+    conditions:
+      condition: 'WHERE'
+      column: id
+      operator: '='
+      value: $1
+  getUsersByEmail:
+      type: SELECT
+      table: users
+      fields:
+        email
+      conditions:
+        condition: 'WHERE'
+        column: email
+        operator: '='
+        value: $1
+  
