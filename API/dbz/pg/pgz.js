@@ -5,6 +5,7 @@ const path = require('path');
 // ✅ Load .env file explicitly
 dotenv.config({ path: path.resolve(__dirname, '../../.env') });
 
+// Agnostic query function
 async function Pgsql(query, values = []){
 	const client = new Client({
 		user: process.env.PG_USER,
@@ -27,7 +28,7 @@ async function Pgsql(query, values = []){
 	finally {
 		await client.end()
 	}
-	
+
 
 }
 
