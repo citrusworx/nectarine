@@ -1,10 +1,11 @@
 js/node_modules
 js/yarn.lock
+js/
 API/node_modules
 API/.env
 API/yarn.lock
 
-node_modules
+node_modules/
 
 yarn.lock
 .env

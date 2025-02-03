@@ -1,9 +1,5 @@
 const { Client } = require('pg');
-const dotenv = ('dotenv');
-const path = require('path');
 
-// ✅ Load .env file explicitly
-dotenv.config({ path: path.resolve(__dirname, '../../.env') });
 
 // Agnostic query function
 async function Pgsql(query, values = []){
@@ -17,7 +13,9 @@ async function Pgsql(query, values = []){
 
 	try {
 			await client.connect();
-			console.log('Connected to database');
+			const dbNameResult = await client.query('SELECT current_database();');
+			console.log('Connected to database:', dbNameResult.rows[0].current_database);
+
 			const result = await client.query(query, values);
 			return result.rows;
 	}
@@ -32,4 +30,4 @@ async function Pgsql(query, values = []){
 
 }
 
-export default Pgsql;
+module.exports = Pgsql;

@@ -8,7 +8,9 @@ const pgsql = require('./dbz/pg/pgz.js');
 dotenv.config()
 
 const server = express();
-const port = process.env.PORT;
+const port = process.env.PORT || 3000;
+
+
 
 server.get('/', async (req, res) => {
   const newUser = gensql('./config/user/db/pg/user.yml', 'user', 'create', 'newUser');

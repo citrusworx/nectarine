@@ -1,17 +1,29 @@
 const express = require('express');
+import {Request, Response} from 'express';
 const jsyaml = require('js-yaml');
 const dotenv = require('dotenv');
 const fs = require('fs');
-const { loadYAML, registerRoute, gensql } = require('./util/util.js');
-const pgsql = require('./dbz/pg/pgz.js');
+const { loadYAML, registerRoute, gensql } = require('./lib/util/util');
+import {Pgsql} from './lib/dbz/pg/pgz';
 
 dotenv.config()
 
 const server = express();
-const port = process.env.PORT;
+const port = process.env.PORT || 3000;
 
-server.get('/', async (req, res) => {
-  const newUser = gensql('./config/user/db/pg/user.yml', 'user', 'create', 'newUser');
+interface SQLgen {
+	  type: string;
+	  action: string;
+		table: string;
+		updates: {
+			column: string[];
+			values: string[];
+		};
+		values: string;
+}
+
+server.get('/', async (req: Request, res: Response) => {
+  const newUser: SQLgen = gensql('./lib/config/user/db/pg/user.yml', 'user', 'create', 'newUser');
   const values = newUser.updates.column.join(', ');
   const vars = newUser.updates.values.join(', ');
   const sql = `${newUser.type} ${newUser.action} ${newUser.table} (${values}) ${newUser.values} (${vars});`;
@@ -22,15 +34,14 @@ server.get('/', async (req, res) => {
 
   try{
 
-    const result = await pgsql(sql, ['drewwinkles@gmail.com', 'mypassword', 'Drew']);
-    console.log(pgsql(sql, ['drewwinkles@gmail.com', 'mypassword', 'Drew']));
+		const result = await Pgsql(sql, ['emailerator@gmail.com', 'myotherpassword', 'Dave']);
     res.send(
       `user inserted a row into ${newUser.table}`
     )
   }
-  catch(error){
+  catch(error: any){
     console.log("DANGER: ", error.stack);
-    res.status(500).send("Error in DB transaction");
+    (res as Response).status(500).send("Error in DB transaction");
   }
 
 })

@@ -13,13 +13,13 @@
   list-style: none;
 }
 
-.navlink {
+.navlink, .navlink a {
   font-family: 'Arial', sans-serif;
   color: white;
   text-decoration: none;
 }
 
-.navlink:hover {
+.navlink:hover, .navlink a:hover {
   color: gray;
   text-decoration: none;
 }

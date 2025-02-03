@@ -10,7 +10,8 @@ export default function HomePage(){
          	A single source of truth for API, database, and query management.
         </p>
 	 <p>
-		This is another paragraph that I am editing in the terminal instead of the IDE that I 			have open in the background.
+    Nectarine is a YAML-based backend library. You can craft data schemas, APIs, and interact with databases--all from
+    a single source. This allows for modular SQL queries that are not hard-coded.
 	 </p>
       </div>
     </>
