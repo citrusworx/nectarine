@@ -13,14 +13,15 @@ function loadYAML(filepath: string): YAMLdata {
 }
 
 function registerRoute(yaml: string, method: string, route: string): any{
-	// Take YAML and parse into obj
-  const api_obj: YAMLdata = loadYAML(yaml);
-	// Capture specific part of obj for routes ex api_obj["get"]["allUsers"]
-  const config = api_obj[method]?.[route];
-  if(!config){
-    throw new Error(`Route configuration not found for method: ${method}, route: ${route}`);
-  }
-  return config;
+    // Take YAML and parse into obj
+    const api_obj: YAMLdata = loadYAML(yaml);
+    // Capture specific part of obj for routes ex api_obj["get"]["allUsers"]
+    const config = api_obj[method]?.[route];
+    
+    if(!config){
+      throw new Error(`Route configuration not found for method: ${method}, route: ${route}`);
+    }
+    return config;
 }
 
 //Generate SQL Statements

@@ -8,7 +8,8 @@
     "outDir": "./",            // Compiled JS output directory
     "rootDir": "./",            // Source directory
     "resolveJsonModule": true,     // To import JSON files directly
-    "forceConsistentCasingInFileNames": true
+    "forceConsistentCasingInFileNames": true,
+    "moduleResolution": "node"
   },
   "include": ["**/*.ts"],         // Include all TypeScript files in src
   "exclude": ["node_modules", "dist"]  // Exclude node_modules and dist from compilation

@@ -1,4 +1,4 @@
-import { Client, QueryResult } from 'pg';
+import { Client } from 'pg';
 
 /**
  * Connects to a Postgres database and executes a query based on
@@ -29,7 +29,7 @@ export async function Pgsql<T = any>(query: string, values: any[] = []): Promise
 
     // Cast rows to generic T[]
     return result.rows as T[];
-  } catch (err: unknown) {
+  } catch (err: any) {
     if (err instanceof Error) {
       console.error('ERROR:', err);
     } else {
