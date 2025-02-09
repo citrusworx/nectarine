@@ -5,14 +5,14 @@ interface YAMLdata {
   [key: string]: any;
 }
 
-function loadYAML(filepath: string): YAMLdata {
+export function loadYAML(filepath: string): YAMLdata {
   const file: string = fs.readFileSync(filepath, 'utf8');
   const yaml: YAMLdata = jsyaml.load(file) as YAMLdata;
   console.log(yaml);
   return yaml;
 }
 
-function registerRoute(yaml: string, method: string, route: string): any{
+export function registerRoute(yaml: string, method: string, route: string): any{
     // Take YAML and parse into obj
     const api_obj: YAMLdata = loadYAML(yaml);
     // Capture specific part of obj for routes ex api_obj["get"]["allUsers"]
@@ -25,7 +25,7 @@ function registerRoute(yaml: string, method: string, route: string): any{
 }
 
 //Generate SQL Statements
-function gensql(yaml: string, type: string, method: string, config: string): any{
+export function gensql(yaml: string, type: string, method: string, config: string): any{
 	// Take sql.yml and parse
   const sql_obj: YAMLdata = loadYAML(yaml);
 	// to create SubSQL obj for CRUD and simplicity
@@ -35,5 +35,3 @@ function gensql(yaml: string, type: string, method: string, config: string): any
   }
 	return obj;
 }
-
-module.exports = {loadYAML, registerRoute, gensql}

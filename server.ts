@@ -3,7 +3,7 @@ import {Request, Response} from 'express';
 const dotenv = require('dotenv');
 dotenv.config();
 const fs = require('fs');
-const { loadYAML, registerRoute, gensql } = require('./lib/util/util');
+const { gensql } = require('./lib/util/util');
 import {Pgsql} from './lib/dbz/pg/pgz';
 import {Mysql, closeSql, pool} from './lib/dbz/ms/msqlz';
 import {Mngz, connectMngz, createCollection, insertOne} from './lib/dbz/mg/mgz';
@@ -38,8 +38,8 @@ server.get('/goat', async(req: Request, res: Response) => {
 
 		await insertOne(mngzClient, 'users',
 		{
-			name: "dork",
-			email: "dork@mail.com",
+			name: "nerd",
+			email: "nerd@mail.com",
 			created_at: new Date()
 		})});
 		res.send(
