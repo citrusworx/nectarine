@@ -1,5 +1,6 @@
 {
-  "name": "nectarine",
+  "name": "nectarinedb",
+  "description": "The library that makes crafting backends a breeze",
   "version": "1.0.0",
   "main": "server.ts",
   "license": "MIT",
