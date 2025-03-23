@@ -1,3 +1,7 @@
 nectarine.png
+tsconfig.json
+.env
+yarn.lock
 server.ts
 .gitignore
+lib/config
